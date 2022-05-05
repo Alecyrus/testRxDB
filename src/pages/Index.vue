@@ -5,13 +5,15 @@ import { RxDBQueryBuilderPlugin } from 'rxdb/plugins/query-builder';
 import { nanoid } from 'nanoid';
 
 import { documentSchemaLiteral } from './document';
+
+import LokiIncrementalIndexedDBAdapter from 'lokijs/src/incremental-indexeddb-adapter';
 addRxPlugin(RxDBQueryBuilderPlugin);
 onMounted(async () => {
   const clientDB = await createRxDatabase({
     name: `workspac.db`,
     storage: getRxStorageLoki({
       // @ts-ignore
-      adapter: new IncrementalIndexedDBAdapter(),
+      adapter: new LokiIncrementalIndexedDBAdapter(),
     }),
     multiInstance: true,
     eventReduce: true,
