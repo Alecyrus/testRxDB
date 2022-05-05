@@ -1,0 +1,34 @@
+.smooth-radius-self
+  mask-image: paint(improved-smooth-corners)
+  -webkit-mask-image: paint(improved-smooth-corners)
+
+.smooth-radius-after
+  filter: drop-shadow(0 3px 10px rgba(0, 0, 0, 0.1)) drop-shadow(0 3px 3px rgba(0, 0, 0, 0.05))
+  &::after
+    content: ''
+    position: absolute
+    width: 100%
+    height: 100%
+    mask-image: paint(improved-smooth-corners)
+    -webkit-mask-image: paint(improved-smooth-corners)
+    z-index: 0
+  *
+    z-index: 1
+
+.smooth-radius-32
+  --smooth-corners-radius: 32
+
+.smooth-radius-24
+  --smooth-corners-radius: 24
+
+.smooth-radius-18
+  --smooth-corners-radius: 18
+
+.smooth-radius-16
+  --smooth-corners-radius: 16
+
+.smooth-radius-12
+  --smooth-corners-radius: 12
+
+.smooth-radius-8
+  --smooth-corners-radius: 8
