@@ -18,43 +18,20 @@ onMounted(async () => {
     ignoreDuplicate: true,
   });
 
-  console.log(clientDB);
-
   const _collections = await clientDB.addCollections({
     documents: {
       schema: documentSchemaLiteral,
     },
   });
 
-  console.log(_collections);
-
-  console.log(
-    'clientDB1',
-    await _collections.documents
-      .find({
-        selector: {
-          id: {
-            $ne: undefined,
-          },
-        },
-      })
-      .exec(),
-  );
+  console.log('The documents:', await _collections.documents.find().exec());
 
   await _collections.documents.atomicUpsert({
     id: nanoid(),
   });
   console.log(
-    'clientDB2',
-    await _collections.documents
-      .find({
-        selector: {
-          id: {
-            $ne: undefined,
-          },
-        },
-      })
-      .exec(),
+    'New documnet is inserted',
+    await _collections.documents.find().exec(),
   );
 });
 </script>

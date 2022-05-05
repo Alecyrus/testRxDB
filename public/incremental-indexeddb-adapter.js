@@ -70,7 +70,7 @@
     // chunkId - index of the data chunk - e.g. chunk 0 will be lokiIds 0-99
     IncrementalIndexedDBAdapter.prototype._getChunk = function (
       collection,
-      chunkId
+      chunkId,
     ) {
       // 0-99, 100-199, etc.
       var minId = chunkId * this.chunkSize;
@@ -148,7 +148,7 @@
       // will have holes when data is deleted)
       var chunkData = collection.data.slice(
         firstDataPosition,
-        lastDataPosition + 1
+        lastDataPosition + 1,
       );
 
       if (chunkData.length > this.chunkSize) {
@@ -176,11 +176,9 @@
     IncrementalIndexedDBAdapter.prototype.saveDatabase = function (
       dbname,
       getLokiCopy,
-      callback
+      callback,
     ) {
       var that = this;
-
-      console.log('saveDatabase', this.idb);
 
       if (!this.idb) {
         this._initializeIDB(dbname, callback, function () {
@@ -191,7 +189,7 @@
 
       if (this.operationInProgress) {
         throw new Error(
-          'Error while saving to database - another operation is already in progress. Please use throttledSaves=true option on Loki object'
+          'Error while saving to database - another operation is already in progress. Please use throttledSaves=true option on Loki object',
         );
       }
       this.operationInProgress = true;
@@ -211,7 +209,7 @@
       try {
         var updatePrevVersionIds = function () {
           console.error(
-            'Unexpected successful tx - cannot update previous version ids'
+            'Unexpected successful tx - cannot update previous version ids',
           );
         };
         var didOverwrite = false;
@@ -242,7 +240,7 @@
               store,
               getLokiCopy(),
               incremental,
-              maxChunkIds
+              maxChunkIds,
             );
             // Update last seen version IDs, but only after the transaction is successful
             updatePrevVersionIds = function () {
@@ -281,7 +279,7 @@
             function (e) {
               console.error('Getting all keys failed: ', e);
               tx.abort();
-            }
+            },
           );
         };
 
@@ -296,7 +294,7 @@
               } else {
                 DEBUG &&
                   console.warn(
-                    'Another writer changed Loki IDB, using slow path...'
+                    'Another writer changed Loki IDB, using slow path...',
                   );
                 didOverwrite = true;
                 getAllKeysThenSave();
@@ -305,7 +303,7 @@
             function (e) {
               console.error('Getting loki chunk failed: ', e);
               tx.abort();
-            }
+            },
           );
         };
 
@@ -353,7 +351,7 @@
       idbStore,
       loki,
       incremental,
-      maxChunkIds
+      maxChunkIds,
     ) {
       var that = this;
       var collectionVersionIds = [];
@@ -465,13 +463,13 @@
      */
     IncrementalIndexedDBAdapter.prototype.loadDatabase = function (
       dbname,
-      callback
+      callback,
     ) {
       var that = this;
 
       if (this.operationInProgress) {
         throw new Error(
-          'Error while loading database - another operation is already in progress. Please use throttledSaves=true option on Loki object'
+          'Error while loading database - another operation is already in progress. Please use throttledSaves=true option on Loki object',
         );
       }
 
@@ -508,7 +506,7 @@
             loki,
             chunks.chunkMap,
             that.options.deserializeChunk,
-            that.lazyCollections
+            that.lazyCollections,
           );
           chunks = null; // gc
 
@@ -575,7 +573,7 @@
         if (chunkCollection) {
           if (!chunkCollection.metadata) {
             throw new Error(
-              'Corrupted database - missing metadata chunk for ' + name
+              'Corrupted database - missing metadata chunk for ' + name,
             );
           }
           var collection = chunkCollection.metadata;
@@ -609,14 +607,14 @@
     IncrementalIndexedDBAdapter.prototype._initializeIDB = function (
       dbname,
       onError,
-      onSuccess
+      onSuccess,
     ) {
       var that = this;
       DEBUG && console.log('initializing idb');
 
       if (this.idbInitInProgress) {
         throw new Error(
-          'Cannot open IndexedDB because open is already in progress'
+          'Cannot open IndexedDB because open is already in progress',
         );
       }
       this.idbInitInProgress = true;
@@ -633,7 +631,7 @@
         } else {
           // Unknown version
           throw new Error(
-            'Invalid old version ' + e.oldVersion + ' for IndexedDB upgrade'
+            'Invalid old version ' + e.oldVersion + ' for IndexedDB upgrade',
           );
         }
       };
@@ -689,7 +687,7 @@
 
     IncrementalIndexedDBAdapter.prototype._getAllChunks = function (
       dbname,
-      callback
+      callback,
     ) {
       var that = this;
       if (!this.idb) {
@@ -749,7 +747,7 @@
             },
             function (e) {
               callback(e);
-            }
+            },
           );
         }
 
@@ -770,7 +768,7 @@
           },
           function (e) {
             callback(e);
-          }
+          },
         );
       }
 
@@ -791,7 +789,7 @@
           },
           function (e) {
             callback(e);
-          }
+          },
         );
 
         if (that.options.onFetchStart) {
@@ -856,11 +854,11 @@
      */
     IncrementalIndexedDBAdapter.prototype.deleteDatabase = function (
       dbname,
-      callback
+      callback,
     ) {
       if (this.operationInProgress) {
         throw new Error(
-          'Error while deleting database - another operation is already in progress. Please use throttledSaves=true option on Loki object'
+          'Error while deleting database - another operation is already in progress. Please use throttledSaves=true option on Loki object',
         );
       }
 
@@ -897,7 +895,7 @@
         // succeed in just a moment
         console.error(
           "Deleting database failed because it's blocked by another connection",
-          e
+          e,
         );
       };
     };
