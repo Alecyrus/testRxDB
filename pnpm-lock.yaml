@@ -1,4 +1,4 @@
-lockfileVersion: 5.3
+lockfileVersion: 5.4
 
 specifiers:
   '@iconify/iconify': ^2.1.2
@@ -9,6 +9,7 @@ specifiers:
   '@vueuse/core': ^7.6.2
   '@vueuse/head': ^0.7.5
   axios: ^0.26.1
+  lokijs: ^1.5.12
   nanoid: ^3.3.4
   pathe: ^0.2.0
   rxdb: ^12.0.8
@@ -32,6 +33,7 @@ specifiers:
 dependencies:
   '@vueuse/head': 0.7.5_vue@3.2.31
   axios: 0.26.1
+  lokijs: 1.5.12
   nanoid: 3.3.4
   rxdb: 12.0.8_rxjs@7.5.5
   rxjs: 7.5.5
@@ -42,14 +44,14 @@ dependencies:
 devDependencies:
   '@iconify/iconify': 2.1.2
   '@iconify/json': 2.1.3
-  '@intlify/vite-plugin-vue-i18n': 3.3.0_ce828d16c4e80881af0d3b7928628a00
+  '@intlify/vite-plugin-vue-i18n': 3.3.0_z2bi2fwe5aeidlynhn4sqyukaa
   '@types/node': 17.0.18
   '@vitejs/plugin-vue': 2.2.2_vite@2.8.4+vue@3.2.31
   '@vueuse/core': 7.6.2_vue@3.2.31
   pathe: 0.2.0
   sass: 1.49.9
   typescript: 4.5.5
-  unplugin-auto-import: 0.6.6_@vueuse+core@7.6.2+vite@2.8.4
+  unplugin-auto-import: 0.6.6_dzlq7cmt2lr7cf7cpfnyoxfh4a
   unplugin-icons: 0.14.1_vite@2.8.4
   unplugin-vue-components: 0.17.18_vite@2.8.4+vue@3.2.31
   vite: 2.8.4_sass@1.49.9
@@ -233,7 +235,7 @@ packages:
     engines: {node: '>= 12'}
     dev: true
 
-  /@intlify/vite-plugin-vue-i18n/3.3.0_ce828d16c4e80881af0d3b7928628a00:
+  /@intlify/vite-plugin-vue-i18n/3.3.0_z2bi2fwe5aeidlynhn4sqyukaa:
     resolution: {integrity: sha512-RxtqVe8ia/5eEH+RFzRKMhO6eyYRGssNpVcaxOoocgKDJuA+1QHF5jZGnioIQpZcIwFxLUlf42C4YdAatIJFEw==}
     engines: {node: '>= 12'}
     peerDependencies:
@@ -3238,7 +3240,7 @@ packages:
     engines: {node: '>= 0.8'}
     dev: false
 
-  /unplugin-auto-import/0.6.6_@vueuse+core@7.6.2+vite@2.8.4:
+  /unplugin-auto-import/0.6.6_dzlq7cmt2lr7cf7cpfnyoxfh4a:
     resolution: {integrity: sha512-x3YxAI9ePoumXOakuS5YJlFkSyAkl5vJlaFZSJhSp75nH5gg8LpqQ/0Gz1/CG/JRRv+xaE1CZpEV161AqFGjEg==}
     engines: {node: '>=14'}
     peerDependencies:
